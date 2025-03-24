@@ -65,8 +65,14 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const currentDay = new Date(date).getDay();
+  const fridayNumber = 5;
+  let difference = fridayNumber - currentDay;
+  const dayQuantity = difference > 0 ? difference : (difference += 7);
+  const newDate = new Date(date);
+  newDate.setDate(date.getDate() + dayQuantity);
+  return newDate;
 }
 
 /**
@@ -80,8 +86,9 @@ function getNextFriday(/* date */) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  const dayQuantity = new Date(year, month, 0).getDate();
+  return dayQuantity;
 }
 
 /**
@@ -131,8 +138,9 @@ function isDateInPeriod(/* date, period */) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const newDate = new Date(date).toLocaleString('en-US', { timeZone: 'UTC' });
+  return newDate;
 }
 
 /**
